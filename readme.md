@@ -99,7 +99,7 @@ src/
 ## Setup & Run
 
 ### Prerequisites
-- JDK 17
+- JDK 21
 - MySQL 8.x
 - Maven 3.8+
 

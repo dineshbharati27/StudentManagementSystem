@@ -10,7 +10,6 @@ import com.StudentManagementSystem.repository.StudentRepository;
 import com.StudentManagementSystem.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashSet;
 import java.util.List;
