@@ -15,12 +15,13 @@ A Spring Boot application for managing students, courses, and enrollments with r
 - Enroll in or leave courses
 
 ### Security:
-- Basic authentication with in-memory admin user
+- Basic authentication with in-memory admin user (username: admin, password: admin123)
 - Role-based access control (RBAC)
 
 ### Database:
-- MySQL for persistent storage (H2 optional)
-- JPA/Hibernate for ORM
+- MySQL 8.x for persistent storage
+- JPA/Hibernate for ORM with automatic schema updates
+- Hibernate dialect: MySQL8Dialect
 
 ## Tech Stack
 
@@ -29,15 +30,13 @@ A Spring Boot application for managing students, courses, and enrollments with r
 - Spring Boot 3.x
 - Spring Security
 - JPA/Hibernate
-
-### Database:
-- MySQL
-
-### Build Tool:
+- MySQL 8.x
 - Maven
 
-### APIs:
-- RESTful endpoints (JSON)
+### Development Tools:
+- Spring Boot DevTools
+- Spring Boot Actuator
+- Lombok (for reducing boilerplate code)
 
 ## Project Structure
 ```
@@ -70,7 +69,9 @@ src/
 │   │               ├── AdminServiceImpl.java  
 │   │               └── StudentServiceImpl.java  
 │   └── resources/  
-│       └── application.properties     # DB and security configs  
+│       ├── application.properties     # DB and security configs
+│       ├── static/                    # Static resources
+│       └── templates/                 # Template files
 ```
 
 ## API Endpoints
@@ -109,7 +110,7 @@ git clone https://github.com/your-repo/StudentManagementSystem.git
 ```
 
 2. Configure MySQL:
-Update application.properties with your MySQL credentials:
+Create a database named `newdb` and update application.properties with your MySQL credentials:
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/newdb
 spring.datasource.username=root
@@ -125,15 +126,33 @@ mvn spring-boot:run
 - Use http://localhost:8080/admin/** for admin operations
 - Default admin credentials: admin/admin123
 
-## Authentication
-- Admin: Pre-configured in-memory user (see SecurityConfig.java)
-- Students: Validate via /student/validate endpoint using studentCode and dateOfBirth
+## Configuration Details
+
+### Database Configuration
+- MySQL 8.x with automatic schema updates
+- Hibernate dialect: MySQL8Dialect
+- DDL auto: update (automatically updates schema)
+
+### Security Configuration
+- In-memory admin user
+- Basic authentication
+- Role-based access control
+
+### Logging Configuration
+- Spring Security: DEBUG
+- Spring Web: DEBUG
+- Spring Web Filter: DEBUG
+- Spring Security Web: DEBUG
+- Spring MVC: DEBUG
 
 ## Future Improvements
 - Add JWT/OAuth2 for enhanced security
 - Implement frontend (React/Angular)
 - Add unit/integration tests (JUnit, Mockito)
 - Dockerize the application
+- Add API documentation using Swagger/OpenAPI
+- Implement caching for better performance
+- Add request validation and sanitization
+- Implement rate limiting
 
-## License
-MIT License. See LICENSE.
+
